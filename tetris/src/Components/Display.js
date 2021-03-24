@@ -9,7 +9,7 @@ const Display = ({gameOver, text}) => (
       {text}
  
   </StyledDisplay>
-)
+);
 
 export default Display;
 
