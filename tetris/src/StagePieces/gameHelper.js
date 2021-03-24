@@ -21,9 +21,8 @@ export const checkCollision = (player, stage, {x: moveX, y:moveY}) => {
         ) {
           return true;
         }
-      }
-
+      };
     }
   }
   return false;
-}
+};
