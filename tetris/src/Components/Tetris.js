@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
-import Stage from './Stage';
-import Display from './Display';
-import StartButton from './StartButton'; 
+import {Stage} from './Stage';
+import {Display} from './Display';
+import {StartButton} from './StartButton'; 
 import {usePlayer} from '../Hooks/usePlayer';
 import {useStage} from '../Hooks/useStage';
 import {useInterval} from '../Hooks/useIntervals';
