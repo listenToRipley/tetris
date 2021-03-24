@@ -59,4 +59,4 @@ export const randomTetromino = () => {
   const randomTetrominos = 
     tetrominos[Math.floor(Math.random() * tetrominos.length)]//shouldn't this be minus 1? 
     return TETROMINOS[randomTetrominos]
-}
+};
