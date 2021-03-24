@@ -1,13 +1,13 @@
-import React, {useState} from 'react';
-import {Stage} from './Stage';
-import {Display} from './Display';
-import {StartButton} from './StartButton'; 
-import {usePlayer} from '../Hooks/usePlayer';
-import {useStage} from '../Hooks/useStage';
-import {useInterval} from '../Hooks/useIntervals';
-import {useGameStatus} from '../Hooks/useGameStatus';
+import React, { useState } from 'react';
+import { Stage } from './Stage';
+import { Display } from './Display';
+import { StartButton } from './StartButton'; 
+import { usePlayer } from '../Hooks/usePlayer';
+import { useStage } from '../Hooks/useStage';
+import { useInterval } from '../Hooks/useIntervals';
+import { useGameStatus } from '../Hooks/useGameStatus';
 import { StyledTetrisWrapper, StyledTetris } from './Styles/StyledTetris';
-import {createStage, checkCollision} from '../gameHelper'
+import { createStage, checkCollision } from '../gameHelper'
 
 const Tetris = () => {
   const [dropTime, setDropTime] = useState(null);
@@ -39,9 +39,9 @@ const Tetris = () => {
   const drop = () => {
     //increase level after clear 10 rows
 
-    if(rows > (setLevel + 1) * 10) {
-      setLevel(prev => prev + 1);
-      setDropTime(1000 / (setLevel + 1) + 200); 
+    if(rows > (level + 1) * 10) {
+      setLevel((prev) => prev + 1);
+      setDropTime(1000 / (level + 1) + 200); 
     }
 
     if(!checkCollision(player, stage, {x:0, y: 1})) {
@@ -53,7 +53,7 @@ const Tetris = () => {
           console.log('GAME OVER')
           setGameOver(true);
           setDropTime(null);
-
+          //set restart here? 
         }
       updatePlayerPos({x: 0, y:0, collided: true})
     }
@@ -63,7 +63,7 @@ const Tetris = () => {
     console.log('interval on')
     if(!gameOver) {
       if(keyCode === 40) { //key up events
-        setDropTime(1000 / (setLevel + 1 ) + 200); 
+        setDropTime(1000 / (level + 1 ) + 200); 
       }
     };
   };
@@ -105,7 +105,7 @@ const Tetris = () => {
     <StyledTetrisWrapper 
       role="button" 
       tabIndex="0" 
-      onKeyDown={event => move(event)} 
+      onKeyDown={(event) => move(event)} 
       onKeyUp={keyUp}
     >
       <StyledTetris>
@@ -129,8 +129,8 @@ const Tetris = () => {
       </StyledTetris>
     </StyledTetrisWrapper>
   
-  )
-}
+  );
+};
 
 
 export default Tetris;
