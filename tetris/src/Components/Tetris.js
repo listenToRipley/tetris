@@ -13,14 +13,14 @@ const Tetris = () => {
   const [dropTime, setDropTime] = useState(null);
   const [gameOver, setGameOver] = useState(false);
 
-  const [player, updatePlayerPost, resetPlayer, playerRotate] = usePlayer(); //call the hook you are using 
+  const [player, updatePlayerPos, resetPlayer, playerRotate] = usePlayer(); //call the hook you are using 
   const [stage, setStage, rowsCleared] = useStage(player, resetPlayer); //call the stage you are creating 
   const [score, setScore, rows, setRows, level, setLevel] = useGameStatus(rowsCleared);
 
   const movePlayer = (dir) => {
     //move left and right
     if(!checkCollision(player, stage, {x:dir, y: 0})) {
-      updatePlayerPost({x:dir, y:0})
+      updatePlayerPos({x:dir, y:0})
     }
   }
 
@@ -40,13 +40,12 @@ const Tetris = () => {
     //increase level after clear 10 rows
 
     if(rows > (setLevel + 1) * 10) {
-      setLevel(prev => prev + 1)
-      //increase speed
-      setDropTime(1000 / (setLevel + 1 ) + 200); 
+      setLevel(prev => prev + 1);
+      setDropTime(1000 / (setLevel + 1) + 200); 
     }
 
     if(!checkCollision(player, stage, {x:0, y: 1})) {
-      updatePlayerPost({x:0, y:1, collided: false})
+      updatePlayerPos({x:0, y:1, collided: false})
     } else {
       //loose condition 
 
@@ -56,7 +55,7 @@ const Tetris = () => {
           setDropTime(null);
 
         }
-      updatePlayerPost({x: 0, y:0, collided: true})
+      updatePlayerPos({x: 0, y:0, collided: true})
     }
   }
 
