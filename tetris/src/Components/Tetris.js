@@ -61,19 +61,12 @@ const Tetris = () => {
 
   const keyUp = ({keyCode}) => {
     console.log('interval on')
-    if(!setGameOver) {
+    if(!gameOver) {
       if(keyCode === 40) { //key up events
-        setDropTime(1000); 
+        setDropTime(1000 / (setLevel + 1 ) + 200); 
       }
-    }
-
-    if(rows > (setLevel + 1) * 10) {
-      setLevel(prev => prev + 1)
-      //increase speed
-      setDropTime(1000 / (setLevel + 1 ) + 200); 
-    }
-
-  }
+    };
+  };
 
   const dropPlayer = () => {
     console.log('interval off')
