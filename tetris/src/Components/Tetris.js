@@ -7,7 +7,7 @@ import {useStage} from '../Hooks/useStage';
 import {useInterval} from '../Hooks/useIntervals';
 import {useGameStatus} from '../Hooks/useGameStatus';
 import { StyledTetrisWrapper, StyledTetris } from './Styles/StyledTetris';
-import {createStage, checkCollision} from '../StagePieces/gameHelper'
+import {createStage, checkCollision} from '../gameHelper'
 
 const Tetris = () => {
   const [dropTime, setDropTime] = useState(null);

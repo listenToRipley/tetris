@@ -1,12 +1,11 @@
 import {useState, useEffect} from 'react';
-import {createStage} from '../StagePieces/gameHelper'
+import {createStage} from '../gameHelper'
 
 export const useStage = (player, resetPlayer) => {
   const [stage, setStage] = useState(createStage());
   const [rowsCleared, setRowsCleared] = useState(0);
 
   useEffect(() => {
-
     setRowsCleared(0);
 
     const sweepRows = newStage => 
@@ -22,18 +21,17 @@ export const useStage = (player, resetPlayer) => {
       }, [])
     
 
-    const updateStage = prevStage => {
+    const updateStage = (prevStage) => {
 
       //set update the stage and reset it
       const newStage = prevStage.map(row => 
-        row.map(cell => (cell[1] !== 'clear' ? [0, 'clear'] : cell)),   
-      );//the end of the mapping 
+        row.map(cell => (cell[1] !== 'clear' ? [0, 'clear'] : cell)));//the end of the mapping 
 
       //draw my shapes
       player.tetrominos.forEach((row, y) => {
         row.forEach((value, x) => {
           if(value !== 0) {
-            newStage [y + player.pos.y][x + player.pos.x] = [
+            newStage[y + player.pos.y][x + player.pos.x] = [
               value,
               `${player.collided ? 'merged' : 'clear'}`
             ];
@@ -47,13 +45,13 @@ export const useStage = (player, resetPlayer) => {
         return sweepRows(newStage); //git add, check if the collision results in a completed row 
       }
 
-      return newStage
+      return newStage;
     }//end of updateStage
 
-    setStage(prev => updateStage(prev))
+    setStage((prev) => updateStage(prev));
 
     //dependency 
-  }, [player, resetPlayer, rowsCleared])
+  }, [player, resetPlayer]);
 
   return [stage, setStage, rowsCleared];
-}
+};
