@@ -2,7 +2,7 @@ import React from 'react';
 import {StyledDisplay} from './Styles/StyleDisplay'
 //gameOver = lose condition 
 //text info 
-const Display = ({gameOver, text}) => (
+export const Display = ({gameOver, text}) => (
   <StyledDisplay
     gameOver={gameOver}>
 
@@ -10,8 +10,6 @@ const Display = ({gameOver, text}) => (
  
   </StyledDisplay>
 );
-
-export default Display;
 
 
 

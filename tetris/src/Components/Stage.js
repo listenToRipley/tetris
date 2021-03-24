@@ -2,7 +2,7 @@ import React from 'react';
 import Cell from './Cell';
 import {StyledStage} from './Styles/StyledStage'
 
-const Stage = ({stage}) => {
+export const Stage = ({stage}) => {
   const height = stage.length
   const width = stage[0].length
   return(
@@ -11,5 +11,3 @@ const Stage = ({stage}) => {
     </StyledStage>
   )
 }
-
-export default Stage;
