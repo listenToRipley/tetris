@@ -56,7 +56,7 @@ export const TETROMINOS = {
 //gen shapes
 export const randomTetromino = () => {
   const tetrominos = 'IJLOSTZ';
-  const randTetrominos = 
+  const randomTetrominos = 
     tetrominos[Math.floor(Math.random() * tetrominos.length)]//shouldn't this be minus 1? 
-    return TETROMINOS[randTetrominos]
+    return TETROMINOS[randomTetrominos]
 }
