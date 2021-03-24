@@ -14,7 +14,7 @@ const Tetris = () => {
   const [gameOver, setGameOver] = useState(false);
 
   const [player, updatePlayerPost, resetPlayer, playerRotate] = usePlayer(); //call the hook you are using 
-  const [stage, setStage, rowsCleared] = useStage(player); //call the stage you are creating 
+  const [stage, setStage, rowsCleared] = useStage(player, resetPlayer); //call the stage you are creating 
   const [score, setScore, rows, setRows, level, setLevel] = useGameStatus(rowsCleared);
 
   const movePlayer = (dir) => {
@@ -27,11 +27,10 @@ const Tetris = () => {
   const startGame = () => {
     //reset everything
     setStage(createStage());
+    setDropTime(1000); //can use this to create a clock?
     resetPlayer(); //not yet currently
     //if we use as restart, it will also reset displays 
-    console.log('hit the start button')
     setGameOver(false);
-    setDropTime(1000); //can use this to create a clock?
     setScore(0);
     setRows(0);
     setLevel(0);
