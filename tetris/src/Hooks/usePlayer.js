@@ -17,7 +17,7 @@ export const usePlayer = () => {
     //reverse reach row to get the rotation in array
       //bigger than zero
       if(dir > 0) return rotateTetro.map(row => row.reverse());
-      return rotateTetro.reverse
+      return rotateTetro.reverse();
 
     }
 
@@ -52,8 +52,8 @@ export const usePlayer = () => {
       ...prev,
       pos: {x:(prev.pos.x +=x), y:(prev.pos.y +=y)},
       collided,
-    }))
-  }
+    }));
+  };
 
   //need to use call back here to prevent infinite loop 
   const resetPlayer = useCallback(() => {
