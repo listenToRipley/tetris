@@ -70,38 +70,38 @@ const Tetris = () => {
 
   const dropPlayer = () => {
     console.log('interval off')
-    setDropTime(null)
-    drop()
+    setDropTime(null);
+    drop();
     
   }
 
   const move = ({keyCode}) => {
     //include the event of the movement? Does this need to be an use effect? 
     //logic should also include that a collision has not occurred, nor reach the end. 
-    if(!setGameOver) {
+    if(!gameOver) {
       //left arrow
       if(keyCode === 37) {
         movePlayer(-1);
         //to the right
       } else if (keyCode === 39) {
-        movePlayer(1)
+        movePlayer(1);
         //down
       } else if (keyCode === 40) {
-        dropPlayer()
+        dropPlayer();
       } else if (keyCode === 38) {
-        playerRotate(stage, 1)
+        playerRotate(stage, 1);
       }
-    }
-  }
+    };
+  };
 
 
   useInterval(() => {
     drop();
-  }, dropTime)
+  }, dropTime);
 
 
-  return(
-    <div>Ready to play?
+  return (
+
     <StyledTetrisWrapper 
       role="button" 
       tabIndex="0" 
@@ -116,11 +116,11 @@ const Tetris = () => {
             ) : (
               <div>
               {/* need to change for after set has occured */}
-              <Display text={`${score}`}/> 
-              <Display text={`${rows}`} /> 
-              <Display text={`${level}`}/> 
+              <Display text={`Score : ${score}`}/> 
+              <Display text={`Row : ${rows}`} /> 
+              <Display text={`Level : ${level}`}/> 
          {/* might want to create a different   component for this */}
-              <Display text="Time"/> 
+              <Display text="Time : "/> 
             </div>
             )
             }
@@ -128,7 +128,7 @@ const Tetris = () => {
          </aside>
       </StyledTetris>
     </StyledTetrisWrapper>
-    </div> 
+  
   )
 }
 
