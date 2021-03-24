@@ -6,13 +6,13 @@ export const useStage = (player, resetPlayer) => {
   const [rowsCleared, setRowsCleared] = useState(0);
 
   useEffect(() => {
-    setRowsCleared(0)
+    setRowsCleared(0);
 
-    const sweepRows = newStage => 
+    const sweepRows = (newStage) => 
       newStage.reduce((acc, row) => {
         //check if the row is full 
-        if(row.findIndex(cell => cell[0] === 0) === -1) {
-          setRowsCleared(prev => prev + 1);
+        if(row.findIndex((cell) => cell[0] === 0) === -1) {
+          setRowsCleared((prev) => prev + 1);
           acc.unshift(new Array(newStage[0].length).fill([0, 'clear'])); //remove the rows, and then add new row to the top of the stage. 
           return acc
         }
@@ -24,8 +24,9 @@ export const useStage = (player, resetPlayer) => {
     const updateStage = (prevStage) => {
 
       //set update the stage and reset it
-      const newStage = prevStage.map(row => 
-        row.map(cell => (cell[1] !== 'clear' ? [0, 'clear'] : cell)));//the end of the mapping 
+      const newStage = prevStage.map((row) => 
+        row.map((cell) => (cell[1] !== 'clear' ? [0, 'clear'] : cell))
+        );//the end of the mapping 
 
       //draw my shapes
       player.tetrominos.forEach((row, y) => {
