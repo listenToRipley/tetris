@@ -22,8 +22,6 @@ export const useStage = (player, resetPlayer) => {
       }, [])
     
 
-
-
     const updateStage = prevStage => {
 
       //set update the stage and reset it
@@ -35,13 +33,13 @@ export const useStage = (player, resetPlayer) => {
       player.tetrominos.forEach((row, y) => {
         row.forEach((value, x) => {
           if(value !== 0) {
-            newStage [y+player.pos.y][x+player.pos.x] = [
+            newStage [y + player.pos.y][x + player.pos.x] = [
               value,
               `${player.collided ? 'merged' : 'clear'}`
-            ]
+            ];
           }
-        })
-      })
+        });
+      });
 
       //check collisions 
       if(player.collided) {
