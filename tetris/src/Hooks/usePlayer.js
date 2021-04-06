@@ -12,8 +12,8 @@ export const usePlayer = () => {
   const rotate = (matrix, dir) => {
     //make rows => columns
     const rotateTetro = matrix.map((_, index) => 
-      matrix.map(col => col[index]),
-      )
+      matrix.map(col => col[index])
+      );
     //reverse reach row to get the rotation in array
       //bigger than zero
       if(dir > 0) return rotateTetro.map(row => row.reverse());
@@ -33,14 +33,13 @@ export const usePlayer = () => {
     while(checkCollision(copyPlayer, stage, {x:0, y:0})) {
       copyPlayer.pos.x += offset;
       offset = -(offset + (offset > 0 ? 1 : -1)); //back and forth movements
-
+      console.log('checking on copy')
       if(offset > copyPlayer.tetrominos[0].length) {
         rotate(copyPlayer.tetrominos, -dir);
         copyPlayer.pos.x = pos; 
         return;
       }
     }
-
 
     setPlayer(copyPlayer)
   }
