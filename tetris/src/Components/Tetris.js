@@ -1,14 +1,19 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+
+//comps
 import { Stage } from './Stage';
 import { Display } from './Display';
 import { StartButton } from './StartButton'; 
+//hooks
 import { usePlayer } from '../Hooks/usePlayer';
 import { useStage } from '../Hooks/useStage';
 import { useInterval } from '../Hooks/useIntervals';
 import { useGameStatus } from '../Hooks/useGameStatus';
+//styles
 import { StyledTetrisWrapper, StyledTetris } from './Styles/StyledTetris';
 import { StyledRight, StyledMid } from './Styles/StyleContainers';
-
+//helpers
 import { createStage, checkCollision } from '../gameHelper'
 
 const Tetris = () => {
@@ -116,14 +121,14 @@ const Tetris = () => {
             {gameOver ? (
               <Display gameOver={gameOver} text="GAME OVER"/>
             ) : (
-              <div>
+              <StyledRight>
               {/* need to change for after set has occured */}
               <Display text={`Score : ${score}`}/> 
               <Display text={`Row : ${rows}`} /> 
               <Display text={`Level : ${level}`}/> 
          {/* might want to create a different   component for this */}
               <Display text="Time : "/> 
-            </div>
+            </StyledRight>
             )
             }
             <StartButton callback={startGame}/>
