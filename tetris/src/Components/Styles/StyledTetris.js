@@ -9,8 +9,9 @@ export const StyledTetrisWrapper = styled.div`
 `
 
 export const StyledTetris = styled.div`
-  display: flexbox;
-  align-items: flex-start;
+  display: flex;
+  ${'' /* align-items: flex-start; */}
+  justify-content: auto;
   padding: 40px;
   margin: 0;
   max-width: 50%;
