@@ -17,12 +17,17 @@ import { StyledRight, StyledMid } from './Styles/StyleContainers';
 import { createStage, checkCollision } from '../gameHelper'
 
 const Tetris = () => {
+  //speed time depending on level 
   const [dropTime, setDropTime] = useState(null);
   const [gameOver, setGameOver] = useState(false);
 
   const [player, updatePlayerPos, resetPlayer, playerRotate] = usePlayer(); //call the hook you are using 
   const [stage, setStage, rowsCleared] = useStage(player, resetPlayer); //call the stage you are creating 
-  const [score, setScore, rows, setRows, level, setLevel] = useGameStatus(rowsCleared);
+  const [score, setScore, rows, setRows, level, setLevel] = useGameStatus(
+    rowsCleared
+  );
+
+  console.log('tetris render')
 
   const movePlayer = (dir) => {
     //move left and right
@@ -48,6 +53,7 @@ const Tetris = () => {
 
     if(rows > (level + 1) * 10) {
       setLevel((prev) => prev + 1);
+      //increase the  the speed for each level 
       setDropTime(1000 / (level + 1) + 200); 
     }
 
@@ -62,12 +68,13 @@ const Tetris = () => {
           setDropTime(null);
           //set restart here? 
         }
-      updatePlayerPos({x: 0, y:0, collided: true})
+      updatePlayerPos({x: 0, y:0, collided: true});
     }
   }
 
   const keyUp = ({keyCode}) => {
     console.log('interval on')
+    //move faster on the down button
     if(!gameOver) {
       if(keyCode === 40) { //key up events
         setDropTime(1000 / (level + 1 ) + 200); 
@@ -106,7 +113,6 @@ const Tetris = () => {
     drop();
   }, dropTime);
 
-
   return (
 
     <StyledTetrisWrapper 
@@ -119,7 +125,7 @@ const Tetris = () => {
         <Stage stage={stage}/>
           <StyledMid>
             {gameOver ? (
-              <Display gameOver={gameOver} text="GAME OVER"/>
+              <Display gameOver={gameOver} text="GAME OVER :("/>
             ) : (
               <StyledRight>
               {/* need to change for after set has occured */}
