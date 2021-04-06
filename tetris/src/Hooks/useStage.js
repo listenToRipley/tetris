@@ -9,13 +9,13 @@ export const useStage = (player, resetPlayer) => {
     setRowsCleared(0);
 
     const sweepRows = (newStage) => 
-      console.log('sweeping stage rows')
       newStage.reduce((acc, row) => {
         //check if the row is full 
+        console.log('stage new state reducer sweep')
         if(row.findIndex((cell) => cell[0] === 0) === -1) {
           setRowsCleared((prev) => prev + 1);
           acc.unshift(new Array(newStage[0].length).fill([0, 'clear'])); //remove the rows, and then add new row to the top of the stage. 
-          return acc;
+          return acc
         }
         acc.push(row);
         return acc;
@@ -43,8 +43,8 @@ export const useStage = (player, resetPlayer) => {
 
       //check collisions 
       if(player.collided) {
-        console.log('stage collision check')
         resetPlayer();
+        console.log('checking for collision in the stage')
         return sweepRows(newStage); //git add, check if the collision results in a completed row 
       }
 
@@ -52,6 +52,7 @@ export const useStage = (player, resetPlayer) => {
     }//end of updateStage
 
     setStage((prev) => updateStage(prev));
+
     //dependency 
   }, [player, resetPlayer]);
 
