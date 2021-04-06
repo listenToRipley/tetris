@@ -11,7 +11,9 @@ export const StyledStartButton = styled.div`
   color: black;
   background: white;
   font-family: arial;
-  font-size: 1rem;
+  font-size: 1.08rem;
+  align-content: center;
+  justify-content: center;
   outline:none;
   curser:pointer;
 `
