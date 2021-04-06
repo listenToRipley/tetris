@@ -4,6 +4,7 @@ export const StyledDisplay = styled.div`
   display: flex;
   box-size: border-box;
   align-items: center;
+  justify-content: center;
   margin: 0 0 20px 0;
   padding: 20px;
   border: 4px solid #333;
