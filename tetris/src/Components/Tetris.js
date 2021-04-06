@@ -7,6 +7,8 @@ import { useStage } from '../Hooks/useStage';
 import { useInterval } from '../Hooks/useIntervals';
 import { useGameStatus } from '../Hooks/useGameStatus';
 import { StyledTetrisWrapper, StyledTetris } from './Styles/StyledTetris';
+import { StyledRight, StyledMid } from './Styles/StyleContainers';
+
 import { createStage, checkCollision } from '../gameHelper'
 
 const Tetris = () => {
@@ -110,7 +112,7 @@ const Tetris = () => {
     >
       <StyledTetris>
         <Stage stage={stage}/>
-          <aside>
+          <StyledMid>
             {gameOver ? (
               <Display gameOver={gameOver} text="GAME OVER"/>
             ) : (
@@ -125,7 +127,7 @@ const Tetris = () => {
             )
             }
             <StartButton callback={startGame}/>
-         </aside>
+         </StyledMid>
       </StyledTetris>
     </StyledTetrisWrapper>
   
