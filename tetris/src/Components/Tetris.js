@@ -27,7 +27,7 @@ const Tetris = () => {
     rowsCleared
   );
 
-  console.log('tetris render')
+  console.log('tetris render component')
 
   const movePlayer = (dir) => {
     //move left and right

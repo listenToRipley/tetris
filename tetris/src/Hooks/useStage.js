@@ -32,7 +32,7 @@ export const useStage = (player, resetPlayer) => {
         );//the end of the mapping 
 
       //draw my shapes
-      player.tetrominos.forEach((row, y) => {
+      player.tetromino.forEach((row, y) => {
         row.forEach((value, x) => {
           if(value !== 0) {
             newStage[y + player.pos.y][x + player.pos.x] = [

@@ -5,7 +5,7 @@ import {TETROMINOS} from '../tetrominos'
 const Cell = ({type}) => (
 
   <StyledCell type={type} color={TETROMINOS[type].color} >
-  {console.log('rerender in Cell')}
+  {console.log('rerender in Cell component')}
   </StyledCell>
 )
 //only render as needed

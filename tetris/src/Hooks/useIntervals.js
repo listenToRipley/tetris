@@ -5,13 +5,14 @@ export const useInterval = (callback, delay) => {
   // Remember the latest callback.
   useEffect(() => {
     savedCallback.current = callback;
+    console.log('save call back - interval')
   }, [callback]);
 
   // Set up the interval.
   useEffect(() => {
     const tick = () => {
       savedCallback.current();
-      console.log('tick, tick, tick')
+      console.log('tick, tick, tick - interval')
     }
     if (delay !== null) {
       const id = setInterval(tick, delay);

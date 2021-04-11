@@ -8,7 +8,7 @@ export const Stage = ({stage}) => {
   return(
     <StyledStage width={width} height={height}>
       {stage.map(row => row.map((cell, x) => <Cell key={x} type={cell[0]}/>))}
-      {console.log('mapping the stage')}
+      {console.log('mapping the stage component')}
     </StyledStage>
   )
 }
