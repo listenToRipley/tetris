@@ -5,7 +5,8 @@ export const useStage = (player, resetPlayer) => {
   const [stage, setStage] = useState(createStage());
   const [rowsCleared, setRowsCleared] = useState(0);
 
-  console.log(`input : ${player} ${resetPlayer}`)
+  console.log(`input PLAYER -  x : ${player.pos.x} , y: ${player.pos.y}`)
+  // console.log(`input RESET: ${resetPlayer}`)
 
   useEffect(() => {
     setRowsCleared(0);
@@ -46,7 +47,7 @@ export const useStage = (player, resetPlayer) => {
       //check collisions 
       if(player.collided) {
         resetPlayer();
-        console.log('checking for collision in the stage')
+        console.log('checking for collision STAGE')
         return sweepRows(newStage); //git add, check if the collision results in a completed row 
       }
 
