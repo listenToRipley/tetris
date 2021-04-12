@@ -1,68 +1,61 @@
-import {useState, useCallback} from 'react';
-import { checkCollision, STAGE_WIDTH } from '../gameHelper';
-import {TETROMINOS, randomTetromino} from '../tetrominos';
+import { useState, useCallback } from "react";
+import { STAGE_WIDTH, checkCollision } from "../gameHelper";
+
+import { TETROMINOS, randomTetromino } from "../tetrominos";
 
 export const usePlayer = () => {
   const [player, setPlayer] = useState({
-    pos: {x: 0, y:0},
+    pos: { x: 0, y: 0 },
     tetromino: TETROMINOS[0].shape,
-    collided: false
+    collided: false,
   });
-                  //tetrominos
-  const rotate = (matrix, dir) => {
-    //make rows => columns
-    const rotateTetro = matrix.map((_, index) => 
-      matrix.map(col => col[index])
-      );
-    //reverse reach row to get the rotation in array
-      //bigger than zero
-      if(dir > 0) return rotateTetro.map(row => row.reverse());
-      return rotateTetro.reverse();
 
-    }
+  const rotate = (matrix, dir) => {
+    // turn rows into columns
+    const rotatedTetro = matrix.map((_, index) =>
+      matrix.map((col) => col[index])
+    );
+    // reverse row to obtain rotated tetromino
+    if (dir > 0) return rotatedTetro.map((row) => row.reverse());
+    return rotatedTetro.reverse();
+  };
 
   const playerRotate = (stage, dir) => {
+    const clonedPlayer = JSON.parse(JSON.stringify(player));
+    clonedPlayer.tetromino = rotate(clonedPlayer.tetromino, dir);
 
-    const copyPlayer = JSON.parse(JSON.stringify(player)); //deep clone, won't mutate
-    copyPlayer.tetromino = rotate(copyPlayer.tetromino, dir)
-
-    //make sure the rotation doesn't go outside of stage && make sure it does not cross over into another shape
-    const pos = copyPlayer.pos.x
+    // same as Meth Meth Method tutorial
+    // this stops tetromino from rotating outside of stage boundaries and on top of other tetrominos
+    const pos = clonedPlayer.pos.x;
     let offset = 1;
-
-    while(checkCollision(copyPlayer, stage, {x:0, y:0})) {
-      copyPlayer.pos.x += offset;
-      offset = -(offset + (offset > 0 ? 1 : -1)); //back and forth movements
-      console.log('checking on copy')
-      if(offset > copyPlayer.tetromino[0].length) {
-        rotate(copyPlayer.tetromino, -dir);
-        copyPlayer.pos.x = pos; 
+    while (checkCollision(clonedPlayer, stage, { x: 0, y: 0 })) {
+      clonedPlayer.pos.x += offset;
+      offset = -(offset + (offset > 0 ? 1 : -1));
+      if (offset > clonedPlayer.tetromino[0].length) {
+        rotate(clonedPlayer.tetromino, -dir);
+        clonedPlayer.pos.x = pos;
         return;
       }
     }
 
-    setPlayer(copyPlayer)
-  }
+    setPlayer(clonedPlayer);
+  };
 
-  const updatePlayerPos = ({x, y, collided}) => {
-    //set state
-    
-    setPlayer(prev => ({
+  const updatePlayerPos = ({ x, y, collided }) => {
+    setPlayer((prev) => ({
       ...prev,
-      pos: {x:(prev.pos.x +=x), y:(prev.pos.y +=y)},
+      pos: { x: (prev.pos.x += x), y: (prev.pos.y += y) },
       collided,
     }));
   };
 
-  //need to use call back here to prevent infinite loop 
   const resetPlayer = useCallback(() => {
     setPlayer({
-      pos: {x: STAGE_WIDTH/2 - 2,y: 0},
+      pos: { x: STAGE_WIDTH / 2 - 2, y: 0 },
       tetromino: randomTetromino().shape,
-      collided: false
-    })
-  }, [])
-
+      collided: false,
+    });
+  }, []);
 
   return [player, updatePlayerPos, resetPlayer, playerRotate];
-}
+};
