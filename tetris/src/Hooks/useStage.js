@@ -37,7 +37,7 @@ export const useStage = (player, resetPlayer) => {
           }
         });
       });
-      // check for collision
+      // check for collision ~ items still over lapping
       if (player.collided) {
         resetPlayer();
         return sweepRows(newStage);
