@@ -46,6 +46,14 @@ const Tetris = () => {
     setLevel(0);
   };
 
+  const pauseGame = () => {
+    //stop current action - no re-render 
+      //clock should stop
+    //second click should restart the game which it was left off. - restart clock
+
+    //this will be a toggle 
+  }
+
   const drop = () => {
     // increase level when player has cleared 10 rows
     if (rows > (level + 1) * 10) {
