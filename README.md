@@ -29,6 +29,8 @@ When you lose, you can press a button to easily restart.
 
       Add a social "share" button for the win and lose screens.
 
+      Add pause
+
 # HOME PAGE SHOULD INCLUDE 
 The title of your application
 
@@ -75,3 +77,5 @@ https://opengameart.org/
 https://michael-karen.medium.com/learning-modern-javascript-with-tetris-92d532bcd057
 https://github.com/MintbeanHackathons/mintbeanphaserjstemplate
 https://github.com/weibenfalk/react-tetris-starter-files 
+https://www.freecodecamp.org/news/react-hooks-tetris-game/
+https://www.youtube.com/watch?v=H2aW5V46khA&t=2249s
