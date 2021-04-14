@@ -63,6 +63,7 @@ const Tetris = () => {
     }
 
     if (!checkCollision(player, stage, { x: 0, y: 1 })) {
+      console.log('no collision? - tetris')
       updatePlayerPos({ x: 0, y: 1, collided: false });
     } else {
       if (player.pos.y < 1) {
@@ -107,7 +108,7 @@ const Tetris = () => {
     drop();
   }, dropTime);
 
-
+  console.log('tell me about the stage in Tetris > ', stage)
   return (
     // we are using the wrapper to handle key inputs
     <StyledTetrisWrapper

@@ -22,8 +22,10 @@ export const useStage = (player, resetPlayer) => {
 
     const updateStage = (prevStage) => {
       // clear out the stage
-      const newStage = prevStage.map((row) =>
+      const newStage = prevStage.map((row) => {
+        console.log('stage roll on updateStage : ',row)
         row.map((cell) => (cell[1] === "clear" ? [0, "clear"] : cell))
+      }
       );
 
       // draw tetromino
@@ -43,7 +45,7 @@ export const useStage = (player, resetPlayer) => {
         return sweepRows(newStage);
       }
 
-      return newStage;
+      return stage = newStage;
     };
 
     setStage((prev) => updateStage(prev));
