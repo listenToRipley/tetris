@@ -1,10 +1,11 @@
 import styled from 'styled-components';
-import city from '../Img/city.png'
+import background from '../Img/background.jpg'
 
 export const StyledTetrisWrapper = styled.div`
   width: 100vw;
   height: 100vh;
-  background: url(city);
+  background: url('${background}');
+  background-position: center;
   background-size: cover;
   overflow: hidden;
 `
