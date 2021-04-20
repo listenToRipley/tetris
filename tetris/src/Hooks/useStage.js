@@ -45,8 +45,9 @@ export const useStage = (player, resetPlayer) => {
         return sweepRows(newStage);
       }
 
-      return stage = newStage;
+      return newStage;
     };
+    console.log('tell me about the stage now everything has run on useStage ',stage)
 
     setStage((prev) => updateStage(prev));
   }, [player, resetPlayer]);
