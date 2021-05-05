@@ -1,16 +1,15 @@
 import React from 'react';
 import Cell from './Cell';
+import {StyledStage} from './Styles/StyledStage'
 
-const Stage = ({stage}) => {
-  console.log(stage)// is coming across as undefined right now
+export const Stage = ({stage}) => {
+  const columns = stage.length
+  const rows = stage[0].length
+  console.log(`why can't you ready width on stage?`, rows)
   return(
-    <div>The Stage aka Board
-    <Cell/>
-    {/* not currently working */}
-    {/* {stage.map(row => row.map((cell, x) => <Cell key={x} type={cell[0]}/>))} */}
-    </div>
+    <StyledStage width={rows} height={columns}>
+      {stage.map(row => row.map((cell, x) => <Cell key={x} type={cell[0]}/>))}
+      {console.log('mapping the stage component')}
+    </StyledStage>
   )
 }
-
-
-export default Stage;

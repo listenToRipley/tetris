@@ -1,7 +1,12 @@
 import React from 'react';
+import {StyledCell} from './Styles/StyledCell'
+import {TETROMINOS} from '../tetrominos'
 
 const Cell = ({type}) => (
-  <div>Cell</div>
-)
 
-export default Cell;
+  <StyledCell type={type} color={TETROMINOS[type].color} >
+  {console.log('rerender in Cell component')}
+  </StyledCell>
+)
+//only render as needed
+export default React.memo(Cell);
